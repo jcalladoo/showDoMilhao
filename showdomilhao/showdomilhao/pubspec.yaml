@@ -1,7 +1,7 @@
 name: showdomilhao
 description: Projeto quiz Flutter com backend Dart e MongoDB.
 
-publish_to: 'none' # para evitar publicação acidental
+publish_to: 'none' 
 
 version: 1.0.0+1
 
@@ -21,3 +21,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
