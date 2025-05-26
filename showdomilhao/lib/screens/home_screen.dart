@@ -3,7 +3,8 @@ import '../services/api_service.dart';
 import '../models/question.dart';
 import 'quiz_screen.dart';
 import 'login_screen.dart';
-import 'subject_selection_screen.dart'; // 👈 Import da nova tela
+import 'subject_selection_screen.dart';
+import 'ranking_screen.dart'; // 👈 Import da tela de Ranking
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -19,6 +20,13 @@ class HomeScreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => const SubjectSelectionScreen()),
+    );
+  }
+
+  void goToRanking(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const RankingScreen()), // 👈 Navega para ranking
     );
   }
 
@@ -71,7 +79,7 @@ class HomeScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                             ),
                           ),
-                          onPressed: () => goToSubjectSelection(context), // 👈 atualizado
+                          onPressed: () => goToSubjectSelection(context),
                           child: const Text('Jogar'),
                         ),
                       ),
@@ -86,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () => goToRanking(context), // 👈 Ação do botão Ranking
                           child: const Text('Ranking'),
                         ),
                       ),
@@ -108,7 +116,7 @@ class HomeScreen extends StatelessWidget {
                     'assets/images/logo.png',
                     width: isSmallScreen ? 140 : 180,
                   ),
-                ), 
+                ),
               ],
             );
           },
