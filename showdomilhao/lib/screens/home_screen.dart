@@ -94,13 +94,21 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  bottom: 0,
-                  left: 0,
+                  bottom: 20,
+                  left: 20,
                   child: Image.asset(
                     'assets/images/character.png',
-                    width: isSmallScreen ? 140 : 180,
+                    width: isSmallScreen ? 340 : 380,
                   ),
                 ),
+                Positioned(
+                  top: 16,
+                  left: 16,
+                  child: Image.asset(
+                    'assets/images/logo.png',
+                    width: isSmallScreen ? 140 : 180,
+                  ),
+                ), 
               ],
             );
           },
