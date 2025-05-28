@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
   void goToRanking(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => const RankingScreen()),
+      MaterialPageRoute(builder: (_) => const RankingScreen()), // 👈 Navega para ranking
     );
   }
 
@@ -43,30 +43,19 @@ class HomeScreen extends StatelessWidget {
             return Stack(
               children: [
                 Positioned(
-                  top: 46,
-                  right: 26,
-                  child: SizedBox(
-                    width: isSmallScreen ? 140 : 180,
-                    child: TextButton(
-                      onPressed: () => goToLogin(context),
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.grey[300],
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      child: const Text(
-                        "Login",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                        ),
+                  top: 16,
+                  right: 16,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey[300],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
                       ),
                     ),
+                    onPressed: () => goToLogin(context),
+                    child: const Text("Login", style: TextStyle(color: Colors.black)),
                   ),
                 ),
-
                 Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -74,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                       Text(
                         'PoliEducação',
                         style: TextStyle(
-                          fontSize: isSmallScreen ? 28 : 36,
+                          fontSize: isSmallScreen ? 30 : 36,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -105,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                             ),
                           ),
-                          onPressed: () => goToRanking(context),
+                          onPressed: () => goToRanking(context), // 👈 Ação do botão Ranking
                           child: const Text('Ranking'),
                         ),
                       ),

@@ -1,0 +1,16 @@
+{
+  "name": "showDoMilhao-root",
+  "private": true,
+  "scripts": {
+    "start-backend": "cd backend && node index.js",
+    "dev-backend": "cd backend && npx nodemon index.js",
+    "flutter-web": "cd showdomilhao && flutter run -d chrome",
+    "dev": "concurrently \"npm run start-backend\" \"npm run flutter-web\"",
+    "check-db": "concurrently -k -s first -n backend,check \"cd backend && node index.js\" \"powershell -Command \\\"$max=5; $i=0; while ($i -lt $max) { try { Invoke-RestMethod -Uri 'http://localhost:3000/login' -Method Post -Headers @{ 'Content-Type' = 'application/json' } -Body '{\\\"email\\\":\\\"prof@poliedro.com\\\",\\\"password\\\":\\\"professor\\\"}' ; break } catch { Write-Output \\\"Tentativa $i falhou\\\"; Start-Sleep -s 2 }; $i++ }\\\"\""
+
+
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
