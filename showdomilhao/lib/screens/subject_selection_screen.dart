@@ -17,7 +17,7 @@ class _SubjectSelectionScreenState extends State<SubjectSelectionScreen> {
     _SubjectItem(label: 'Exatas', icon: Icons.calculate, color: Colors.orange, key: 'exatas'),
     _SubjectItem(label: 'Linguagens', icon: Icons.abc, color: Colors.pink, key: 'linguagens'),
     _SubjectItem(label: 'Biológicas', icon: Icons.science, color: Colors.lightGreen, key: 'biologicas'),
-    _SubjectItem(label: 'Humanas', icon: Icons.public, color: Colors.yellow, key: 'humanas'),
+    _SubjectItem(label: 'Humanas', icon: Icons.public, color: Colors.brown, key: 'humanas'),
   ];
 
   void _toggleSubject(String key) {
@@ -52,130 +52,116 @@ class _SubjectSelectionScreenState extends State<SubjectSelectionScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF16C5D1),
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            const SizedBox(height: 32),
-            if (isSmallScreen)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  itemCount: subjects.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20,
-                    childAspectRatio: 1,
-                  ),
-                  itemBuilder: (context, index) {
-                    final item = subjects[index];
-                    final isSelected = selectedSubjects.contains(item.key);
-                    return GestureDetector(
-                      onTap: () => _toggleSubject(item.key),
-                      child: Column(
-                        children: [
-                          Container(
-                            width: 70,
-                            height: 70,
+            Positioned(
+              top: 16,
+              left: 16,
+              child: Image.asset(
+                'assets/images/logo.png',
+                width: isSmallScreen ? 100 : 120,
+              ),
+            ),
+            Column(
+              children: [
+                Expanded(
+                  child: Center(
+                    child: Wrap(
+                      spacing: 40,
+                      runSpacing: 40,
+                      alignment: WrapAlignment.center,
+                      children: subjects.map((item) {
+                        final isSelected = selectedSubjects.contains(item.key);
+                        return GestureDetector(
+                          onTap: () => _toggleSubject(item.key),
+                          child: Container(
+                            width: 180,
+                            height: 180,
                             decoration: BoxDecoration(
                               color: item.color,
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(20),
                             ),
                             child: Stack(
                               children: [
-                                Center(child: Icon(item.icon, size: 40)),
+                                Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(item.icon, size: 60, color: Colors.white),
+                                      const SizedBox(height: 12),
+                                      Text(
+                                        item.label,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                                 if (isSelected)
                                   const Positioned(
-                                    top: 4,
-                                    right: 4,
-                                    child: Icon(Icons.check, size: 16, color: Colors.black),
+                                    top: 10,
+                                    right: 10,
+                                    child: Icon(Icons.check_circle, size: 32, color: Colors.black),
                                   ),
                               ],
                             ),
                           ),
-                          const SizedBox(height: 8),
-                          Text(
-                            item.label,
-                            style: const TextStyle(color: Colors.white, fontSize: 14),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                        );
+                      }).toList(),
+                    ),
+                  ),
                 ),
-              )
-            else
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: subjects.map((item) {
-                  final isSelected = selectedSubjects.contains(item.key);
-                  return GestureDetector(
-                    onTap: () => _toggleSubject(item.key),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Column(
-                        children: [
-                          Container(
-                            width: 70,
-                            height: 70,
-                            decoration: BoxDecoration(
-                              color: item.color,
-                              borderRadius: BorderRadius.circular(16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: selectedSubjects.isEmpty ? null : _startFilteredQuiz,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.orange[700],
+                              padding: const EdgeInsets.symmetric(vertical: 18),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
                             ),
-                            child: Stack(
-                              children: [
-                                Center(child: Icon(item.icon, size: 40)),
-                                if (isSelected)
-                                  const Positioned(
-                                    top: 4,
-                                    right: 4,
-                                    child: Icon(Icons.check, size: 16, color: Colors.black),
-                                  ),
-                              ],
+                            child: const Text(
+                              'Pronto!',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                          const SizedBox(height: 8),
-                          Text(
-                            item.label,
-                            style: const TextStyle(color: Colors.white, fontSize: 14),
-                            textAlign: TextAlign.center,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12.0),
+                        child: GestureDetector(
+                          onTap: _goBack,
+                          child: const Text(
+                            '< Voltar',
+                            style: TextStyle(
+                              fontSize: 18,
+                              decoration: TextDecoration.underline,
+                              color: Colors.white,
+                            ),
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Column(
-                children: [
-                  ElevatedButton(
-                    onPressed: selectedSubjects.isEmpty ? null : _startFilteredQuiz,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        'Pronto!',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ),
+                    ],
                   ),
-                  const SizedBox(height: 10),
-                  GestureDetector(
-                    onTap: _goBack,
-                    child: const Text('< Voltar', style: TextStyle(color: Colors.white)),
-                  ),
-                  const SizedBox(height: 30),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),
