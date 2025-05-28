@@ -14,10 +14,26 @@ class _SubjectSelectionScreenState extends State<SubjectSelectionScreen> {
   final Set<String> selectedSubjects = {};
 
   final List<_SubjectItem> subjects = [
-    _SubjectItem(label: 'Exatas', icon: Icons.calculate, color: Colors.orange, key: 'exatas'),
-    _SubjectItem(label: 'Linguagens', icon: Icons.abc, color: Colors.pink, key: 'linguagens'),
-    _SubjectItem(label: 'Biológicas', icon: Icons.science, color: Colors.lightGreen, key: 'biologicas'),
-    _SubjectItem(label: 'Humanas', icon: Icons.public, color: Colors.brown, key: 'humanas'),
+    _SubjectItem(
+        label: 'Exatas',
+        icon: Icons.calculate,
+        color: Colors.orange,
+        key: 'exatas'),
+    _SubjectItem(
+        label: 'Linguagens',
+        icon: Icons.abc,
+        color: Colors.pink,
+        key: 'linguagens'),
+    _SubjectItem(
+        label: 'Biológicas',
+        icon: Icons.science,
+        color: Colors.lightGreen,
+        key: 'biologicas'),
+    _SubjectItem(
+        label: 'Humanas',
+        icon: Icons.public,
+        color: Colors.brown,
+        key: 'humanas'),
   ];
 
   void _toggleSubject(String key) {
@@ -32,7 +48,8 @@ class _SubjectSelectionScreenState extends State<SubjectSelectionScreen> {
 
   void _startFilteredQuiz() async {
     final questions = await ApiService().fetchQuestions();
-    final filtered = questions.where((q) => selectedSubjects.contains(q.subject)).toList();
+    final filtered =
+        questions.where((q) => selectedSubjects.contains(q.subject)).toList();
 
     if (!mounted) return;
     Navigator.push(
@@ -87,7 +104,8 @@ class _SubjectSelectionScreenState extends State<SubjectSelectionScreen> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Icon(item.icon, size: 60, color: Colors.white),
+                                      Icon(item.icon,
+                                          size: 60, color: Colors.white),
                                       const SizedBox(height: 12),
                                       Text(
                                         item.label,
@@ -104,7 +122,8 @@ class _SubjectSelectionScreenState extends State<SubjectSelectionScreen> {
                                   const Positioned(
                                     top: 10,
                                     right: 10,
-                                    child: Icon(Icons.check_circle, size: 32, color: Colors.black),
+                                    child: Icon(Icons.check_circle,
+                                        size: 32, color: Colors.black),
                                   ),
                               ],
                             ),
@@ -115,7 +134,8 @@ class _SubjectSelectionScreenState extends State<SubjectSelectionScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -124,7 +144,9 @@ class _SubjectSelectionScreenState extends State<SubjectSelectionScreen> {
                         child: SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: selectedSubjects.isEmpty ? null : _startFilteredQuiz,
+                            onPressed: selectedSubjects.isEmpty
+                                ? null
+                                : _startFilteredQuiz,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.orange[700],
                               padding: const EdgeInsets.symmetric(vertical: 18),

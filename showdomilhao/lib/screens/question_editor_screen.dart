@@ -1,5 +1,3 @@
-// lib/screens/question_editor_screen.dart
-
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
 import '../models/question.dart';
@@ -8,11 +6,9 @@ class QuestionEditorScreen extends StatelessWidget {
   const QuestionEditorScreen({super.key});
 
   void _navigateToAddQuestion(BuildContext context) {
-    // TODO: navegar para tela de adicionar questão
   }
 
   void _navigateToDeleteQuestion(BuildContext context) {
-    // TODO: navegar para tela de remover questão
   }
 
   @override

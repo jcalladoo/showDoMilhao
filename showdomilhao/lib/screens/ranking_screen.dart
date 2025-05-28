@@ -17,7 +17,6 @@ class RankingScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // Linha com o logo no canto
             Padding(
               padding: const EdgeInsets.only(top: 16.0, left: 16.0),
               child: Align(
@@ -55,7 +54,6 @@ class RankingScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Lista de nomes
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 24),

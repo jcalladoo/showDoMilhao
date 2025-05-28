@@ -70,7 +70,8 @@ class _QuizScreenState extends State<QuizScreen> {
               child: Text(
                 question.text,
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             ...List.generate(question.options.length, (index) {
@@ -95,7 +96,8 @@ class _QuizScreenState extends State<QuizScreen> {
                     borderRadius: BorderRadius.circular(30),
                     onTap: () => handleOptionTap(index),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
                       child: Row(
                         children: [
                           CircleAvatar(
@@ -121,7 +123,8 @@ class _QuizScreenState extends State<QuizScreen> {
               Align(
                 alignment: Alignment.centerRight,
                 child: IconButton(
-                  icon: const Icon(Icons.skip_next, size: 32, color: Colors.black),
+                  icon: const Icon(Icons.skip_next,
+                      size: 32, color: Colors.black),
                   onPressed: nextQuestion,
                 ),
               ),

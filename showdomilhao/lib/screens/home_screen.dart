@@ -4,7 +4,7 @@ import '../models/question.dart';
 import 'quiz_screen.dart';
 import 'login_screen.dart';
 import 'subject_selection_screen.dart';
-import 'ranking_screen.dart'; // 👈 Import da tela de Ranking
+import 'ranking_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
   void goToRanking(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (_) => const RankingScreen()), // 👈 Navega para ranking
+      MaterialPageRoute(builder: (_) => const RankingScreen()),
     );
   }
 
@@ -43,19 +43,30 @@ class HomeScreen extends StatelessWidget {
             return Stack(
               children: [
                 Positioned(
-                  top: 16,
-                  right: 16,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey[300],
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                  top: 46,
+                  right: 26,
+                  child: SizedBox(
+                    width: isSmallScreen ? 140 : 180,
+                    child: TextButton(
+                      onPressed: () => goToLogin(context),
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.grey[300],
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
-                    onPressed: () => goToLogin(context),
-                    child: const Text("Login", style: TextStyle(color: Colors.black)),
                   ),
                 ),
+
                 Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -94,13 +105,14 @@ class HomeScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                             ),
                           ),
-                          onPressed: () => goToRanking(context), // 👈 Ação do botão Ranking
+                          onPressed: () => goToRanking(context),
                           child: const Text('Ranking'),
                         ),
                       ),
                     ],
                   ),
                 ),
+
                 Positioned(
                   bottom: 20,
                   left: 20,
@@ -109,6 +121,7 @@ class HomeScreen extends StatelessWidget {
                     width: isSmallScreen ? 340 : 380,
                   ),
                 ),
+
                 Positioned(
                   top: 16,
                   left: 16,
